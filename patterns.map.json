@@ -1,0 +1,10 @@
+{
+  "uf_attention_bias": {
+    "files": ["src/vr/attention-modulator.js"],
+    "context": { "domain": "vr" }
+  },
+  "uf_affective_sync": {
+    "files": ["src/game/affect-sync-loop.js"],
+    "context": { "domain": "games" }
+  }
+}
