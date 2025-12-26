@@ -4,7 +4,8 @@ import { unknownFunctionTemplate } from "../taxonomies/augmented-functions.taxon
 const registry = new Map();
 
 export function registerUnknownFunction(definition) {
-  const id = definition.id || `uf_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+  const id =
+    definition.id || `uf_${Date.now()}_${Math.random().toString(16).slice(2)}`;
   const entry = { ...unknownFunctionTemplate, ...definition, id };
   registry.set(id, entry);
   return entry;
@@ -12,4 +13,8 @@ export function registerUnknownFunction(definition) {
 
 export function listUnknownFunctions() {
   return Array.from(registry.values());
+}
+
+export function getUnknownFunction(id) {
+  return registry.get(id) || null;
 }
