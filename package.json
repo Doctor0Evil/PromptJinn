@@ -1,0 +1,15 @@
+{
+  "name": "promptjinn-augmented-human-ecosystem",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "dev": "pnpm --filter research-console run dev",
+    "lint": "pnpm -r run lint",
+    "test": "pnpm -r run test"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0"
+  }
+}
