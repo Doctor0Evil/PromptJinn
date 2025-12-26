@@ -1,0 +1,9 @@
+{
+  "name": "@promptjinn/pattern-intel-tools",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "promptjinn-import-pending": "bin/promptjinn-import-pending.js"
+  },
+  "dependencies": {}
+}
