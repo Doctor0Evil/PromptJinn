@@ -1,0 +1,18 @@
+{
+  "id": "mc_vr_trance_induction_v2",
+  "label": "VR Trance Induction (Variant)",
+  "domains": ["vr", "xr", "games"],
+  "signals": [
+    "narrowing visual field with synchronized breathing audio",
+    "explicit instructions to 'stop thinking' during monetization or choice prompts"
+  ],
+  "riskTags": ["hypnosis_like", "coercive", "high_risk"],
+  "detectionHints": [
+    "check monetization scenes for relaxation/hypnosis scripts",
+    "inspect FOV changes around critical decision points"
+  ],
+  "mitigation": [
+    "move any relaxation content away from monetization and critical choices",
+    "require explicit opt-in before any trance-like experience in games/VR"
+  ]
+}
