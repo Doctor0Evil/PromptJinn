@@ -5,7 +5,7 @@ export const augmentedFunctionTypes = [
   "motor_assist",
   "cognitive_scaling",
   "emotional_regulation",
-  "unknown_experimental",
+  "unknown_experimental"
 ];
 
 export const unknownFunctionTemplate = {
@@ -16,5 +16,5 @@ export const unknownFunctionTemplate = {
   inputModalities: [],
   outputModalities: [],
   reversible: true,
-  requiresOversight: true,
+  requiresOversight: true
 };
