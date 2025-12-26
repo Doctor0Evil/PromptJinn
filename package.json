@@ -1,15 +1,15 @@
 {
-  "name": "promptjinn-augmented-human-ecosystem",
+  "name": "@promptjinn/cognitive-safety-cli",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
-  "scripts": {
-    "build": "pnpm -r run build",
-    "dev": "pnpm --filter research-console run dev",
-    "lint": "pnpm -r run lint",
-    "test": "pnpm -r run test"
+  "bin": {
+    "promptjinn-safety-check": "bin/promptjinn-safety-check.js"
   },
-  "devDependencies": {
-    "eslint": "^9.0.0"
+  "dependencies": {
+    "@promptjinn/neuro-models": "0.1.0",
+    "@promptjinn/hardware-abstraction": "0.1.0",
+    "@promptjinn/reporting-engine": "0.1.0",
+    "@promptjinn/report-schema": "0.1.0",
+    "@promptjinn/telemetry-guardian": "0.1.0"
   }
 }
