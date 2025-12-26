@@ -1,4 +1,5 @@
 // /packages/cognitive-safety-cli/src/run-safety-check.js
+
 import {
   listUnknownFunctions,
   registerUnknownFunction
@@ -11,8 +12,19 @@ import { buildEthicalSimulationReport } from "@promptjinn/reporting-engine";
 import { validateEthicalSimulationReport } from "@promptjinn/report-schema";
 import { neurodataStrictPolicy } from "@promptjinn/telemetry-guardian/src/policies/neurodata-strict.policy.js";
 
+import fs from "node:fs";
+import path from "node:path";
+import { analyzeDescriptionForMindControl } from "@promptjinn/pattern-intel/src/detectors/mindcontrol-patterns.detector.js";
+
+function loadPatternMap() {
+  const mapPath = path.join(process.cwd(), "patterns.map.json");
+  if (!fs.existsSync(mapPath)) return {};
+  return JSON.parse(fs.readFileSync(mapPath, "utf8"));
+}
+
 export async function runSafetyCheck() {
   const reasons = [];
+  const patternMap = loadPatternMap();
 
   ensureDefaultUnknownFunctions();
   const unknownFunctions = listUnknownFunctions();
@@ -25,6 +37,23 @@ export async function runSafetyCheck() {
   const hardwareProfiles = [implantHardwareProfile, wearableHardwareProfile];
 
   for (const uf of unknownFunctions) {
+    const mapping = patternMap[uf.id] || { files: [], context: {} };
+
+    const mcMatches = analyzeDescriptionForMindControl(
+      `${uf.label} ${uf.description}`,
+      mapping.context
+    );
+
+    if (mcMatches.length > 0) {
+      const fileList =
+        mapping.files.length > 0 ? mapping.files.join(", ") : "unknown files";
+      const labels = mcMatches.map((m) => m.label).join(", ");
+
+      reasons.push(
+        `Potential mind-control patterns [${labels}] detected for ${uf.id} in ${fileList}.`
+      );
+    }
+
     for (const hw of hardwareProfiles) {
       const neurodataPlan = {
         explicitConsent: false,
