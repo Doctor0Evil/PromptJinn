@@ -1,0 +1,9 @@
+{
+  "name": "@promptjinn/pattern-reviewer",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "promptjinn-review-patterns": "bin/promptjinn-review-patterns.js"
+  },
+  "dependencies": {}
+}
