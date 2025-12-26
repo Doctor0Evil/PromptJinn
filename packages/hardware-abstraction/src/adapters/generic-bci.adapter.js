@@ -9,7 +9,7 @@ export class GenericBciAdapter {
   async readRawSignal(channelId, options = {}) {
     return this.transport.read(channelId, {
       windowMs: options.windowMs || 250,
-      sampleRate: options.sampleRate || 1000,
+      sampleRate: options.sampleRate || 1000
     });
   }
 
