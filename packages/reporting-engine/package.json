@@ -1,0 +1,11 @@
+{
+  "name": "@promptjinn/reporting-engine",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/index.js",
+  "dependencies": {
+    "@promptjinn/neuro-models": "0.1.0",
+    "@promptjinn/neuro-ethics-guard": "0.1.0",
+    "@promptjinn/simulation-lab": "0.1.0"
+  }
+}
