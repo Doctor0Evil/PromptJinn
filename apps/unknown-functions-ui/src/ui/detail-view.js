@@ -1,5 +1,7 @@
-// /apps/unknown-functions-ui/src/ui/detail-view.js
+// /apps/unknown-functions-ui/src/ui/detail-view.js (updated)
 import { renderAntiCoercionPanel } from "./anti-coercion-panel.js";
+import { renderThreatPatterns } from "./threat-patterns.view.js";
+import { analyzeDescriptionForMindControl } from "@promptjinn/pattern-intel/src/detectors/mindcontrol-patterns.detector.js";
 
 export function renderDetailView(root, report) {
   root.innerHTML = "";
@@ -11,15 +13,17 @@ export function renderDetailView(root, report) {
   const risk = document.createElement("p");
   risk.textContent = `Projected Risk: ${report.projectedRisk}`;
 
-  const ethics = document.createElement("pre");
-  ethics.textContent = JSON.stringify(report.ethics, null, 2);
-
   container.appendChild(title);
   container.appendChild(risk);
-  container.appendChild(ethics);
 
   const antiCoercion = renderAntiCoercionPanel(report);
   container.appendChild(antiCoercion);
+
+  const matches = analyzeDescriptionForMindControl(
+    `${report.unknownFunction.label} ${report.unknownFunction.description}`,
+    { domain: "vr" }
+  );
+  renderThreatPatterns(container, report, matches);
 
   root.appendChild(container);
 }
