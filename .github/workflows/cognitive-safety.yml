@@ -1,0 +1,30 @@
+name: Cognitive Safety Gate
+
+on:
+  pull_request:
+    branches: [main, master]
+  push:
+    branches: [main, master]
+
+jobs:
+  cognitive-safety:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "pnpm"
+
+      - name: Install PNPM
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run cognitive safety checks
+        run: pnpm dlx @promptjinn/cognitive-safety-cli promptjinn-safety-check
