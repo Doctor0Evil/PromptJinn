@@ -1,5 +1,6 @@
 // /packages/neuro-ethics-guard/src/guards/session.guard.js
-import { classifyRisk } from "../../core-kernel/src/domain/risk-levels.js";
+import { classifyRisk } from "@promptjinn/core-kernel";
+
 import { evaluateNeurodataPlan } from "../principles/neurorights.js";
 
 export function validateSessionConfig(sessionConfig) {
@@ -9,6 +10,6 @@ export function validateSessionConfig(sessionConfig) {
   return {
     risk,
     violations: neuroFindings,
-    approved: risk !== "HIGH" && neuroFindings.length === 0,
+    approved: risk !== "HIGH" && neuroFindings.length === 0
   };
 }
