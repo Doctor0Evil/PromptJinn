@@ -3,15 +3,25 @@ export function generateSafetyHypotheses(unknownFunction, hardwareProfile) {
   const hypotheses = [];
 
   if (hardwareProfile.class === "implant") {
-    hypotheses.push("Continuous monitoring for unintended closed-loop behavior.");
+    hypotheses.push(
+      "Continuous monitoring for unintended closed-loop behavior."
+    );
   }
 
   if (unknownFunction.outputModalities.includes("affective_state")) {
-    hypotheses.push("Independent assessment of mood manipulation and dependency risk.");
+    hypotheses.push(
+      "Independent assessment of mood manipulation and dependency risk."
+    );
   }
 
   if (unknownFunction.reversible !== true) {
-    hypotheses.push("Disallow deployment until a rollback path is engineered.");
+    hypotheses.push(
+      "Disallow deployment until a validated rollback path is engineered."
+    );
+  }
+
+  if (unknownFunction.requiresOversight === true) {
+    hypotheses.push("Require human clinical oversight for all deployments.");
   }
 
   return hypotheses;
