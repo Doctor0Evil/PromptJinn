@@ -1,0 +1,9 @@
+{
+  "name": "@promptjinn/neuro-ethics-guard",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/index.js",
+  "dependencies": {
+    "@promptjinn/core-kernel": "0.1.0"
+  }
+}
